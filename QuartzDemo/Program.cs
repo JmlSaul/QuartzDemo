@@ -25,7 +25,7 @@ namespace QuartzDemo
 
                 // define the job and tie it to our HelloJob class
                 IJobDetail job = JobBuilder.Create<HelloJob>()
-                    .WithIdentity("job1", "group1").RequestRecovery()
+                    .WithIdentity("job1", "group1")
                     .Build();
 
                 // Trigger the job to run now, and then repeat every 3 seconds
