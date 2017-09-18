@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- This file contains job definitions in schema version 2.0 format -->
+
+<job-scheduling-data xmlns="http://quartznet.sourceforge.net/JobSchedulingData" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="2.0">
+
+  <processing-directives>
+    <overwrite-existing-data>true</overwrite-existing-data>
+  </processing-directives>
+
+  <schedule>
+
+    <job>
+      <name>simpleJob</name>
+      <group>simpleGroup</group>
+      <description>Simple job 1</description>
+      <job-type>QuartzDemoWithConfig.Simple, QuartzDemoWithConfig</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+
+    <trigger>
+      <simple>
+        <name>simpleTrigger</name>
+        <group>simpleGroup</group>
+        <description>Simple trigger to simply fire simple job</description>
+        <job-name>simpleJob</job-name>
+        <job-group>simpleGroup</job-group>
+        <misfire-instruction>SmartPolicy</misfire-instruction>
+        <!--一直重复-1 -->
+        <repeat-count>-1</repeat-count>
+        <repeat-interval>3000</repeat-interval>
+      </simple>
+    </trigger>
+    <!--==============================================================================-->
+    <job>
+      <name>cronJob</name>
+      <group>cronGroup</group>
+      <description>cron job 1</description>
+      <job-type>QuartzDemoWithConfig.Cron, QuartzDemoWithConfig</job-type>
+      <durable>true</durable>
+      <recover>false</recover>
+    </job>
+
+    <trigger>
+      <cron>
+        <name>cronTrigger</name>
+        <group>cronGroup</group>
+        <description>cron trigger to simply fire cron job</description>
+        <job-name>cronJob</job-name>
+        <job-group>cronGroup</job-group>
+        <misfire-instruction>SmartPolicy</misfire-instruction>
+        <cron-expression>0/3 * * * * ?</cron-expression>
+      </cron>
+    </trigger>
+
+
+
+  </schedule>
+</job-scheduling-data>
